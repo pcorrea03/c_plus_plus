@@ -1,0 +1,146 @@
+//========================================================================================================
+// Programmer: Pedro Correa
+//========================================================================================================
+
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() 
+{
+	int num1 = 1;
+	int num2 = 2;
+	char let1 = 'a';
+	char let2 = 'z';
+	float pi = 3.14;
+	float cake = 2.72;
+
+	cout << "The greater value of " << num1 << " and " << num2 << " = " << max(num1, num2) << endl;
+	cout << "The greater value of " << num2 << " and " << num1 << " = " << max(num1, num2) << endl;
+	cout << "The greater value of '" << let1 << "' and '" << let2 << "' = " << max(let1, let2) << endl;
+	cout << "The greater value of " << pi << " and " << cake << " = " << max(pi, cake) << endl;
+
+
+	return 0;
+}
+//========================================================================================================
+/* OUTPUT
+The greater value of 1 and 2 = 2
+The greater value of 2 and 1 = 2
+The greater value of 'a' and 'z' = z
+The greater value of 3.14 and 2.72 = 3.14
+Press any key to continue . . . */
+//========================================================================================================
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() 
+{
+	vector <int> values;
+	values.push_back(1);
+	values.push_back(2);
+	values.push_back(4);
+	values.push_back(9);
+	values.push_back(5);
+	cout << "Vector: ";
+	for (int i = 0; i < values.size(); i++)
+	{
+		cout << values[i] << " ";
+	}
+
+	values.insert(values.begin(), 3);
+	cout << "\n\nVector: ";
+	for (int i = 0; i < values.size(); i++)
+	{
+		cout << values[i] << " ";
+	}
+
+	values.erase(values.begin());
+	cout << "\n\nVector: ";
+	for (int i = 0; i < values.size(); i++)
+	{
+		cout << values[i] << " ";
+	}
+	values.erase(values.begin() + 4);
+	cout << "\n\nVector: ";
+	for (int i = 0; i < values.size(); i++)
+	{
+		cout << values[i] << " ";
+	}
+
+	cout << "\n\nThere are " << values.size() << " values.\n";
+		
+	return 0;
+}
+//========================================================================================================
+/* OUTPUT
+Vector: 1 2 4 9 5
+
+Vector: 3 1 2 4 9 5
+
+Vector: 1 2 4 9 5
+
+Vector: 1 2 4 9
+
+There are 4 values.
+Press any key to continue . . . */
+//========================================================================================================
+#include <vector>
+
+using namespace std;
+
+int main() 
+{
+	const int NUM_EMPLOYEES = 5;
+	vector <int> hours(5);
+	vector <double> wage(5);
+
+	int x;
+	int y;
+
+	cout << "Enter hours worked and hourly wage of each employee:\n\n";
+
+	for(int i = 0; i < hours.size(); i++)
+	{
+		cout << "Hours for Employee #" << i + 1 << ": ";
+		cin >> x;
+		cin.ignore();
+		hours[i] = x;
+		cout << "Wage for Employee #" << i + 1 << ": ";
+		cin >> y;
+		wage[i] = y;
+	}
+	
+	system("CLS");
+	cout << fixed << setprecision(2);
+
+	cout << "Gross pay for each employee:\n\n";
+
+	for (int i = 0; i < hours.size(); i++)
+	{
+		cout << setw(11) << "Employee #" << i + 1 << setw(5) << "$" << setw(7) << hours[i] * wage[i] << endl;
+	}
+
+	cout << "\nEmployee #1 hours = " << hours.front() << endl;
+	cout << "Employee #5 hours = " << hours.back() << endl;
+
+	return 0;
+}
+//========================================================================================================
+/* OUTPUT
+Gross pay for each employee:
+
+ Employee #1    $ 132.00
+ Employee #2    $ 182.00
+ Employee #3    $ 240.00
+ Employee #4    $ 306.00
+ Employee #5    $ 380.00
+
+Employee #1 hours = 11
+Employee #5 hours = 19
+Press any key to continue . . . */
+//========================================================================================================
