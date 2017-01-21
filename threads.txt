@@ -1,0 +1,153 @@
+//======================================================
+// Programmar: Pedro Correa
+//======================================================
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <thread>
+#include <fstream>
+
+using namespace std;
+
+void writeRoots();
+void writeSquares();
+
+int main()
+{
+	clock_t start;
+	clock_t end;
+
+	start = clock();
+
+	cout << "Main: startup" << endl << endl;
+	cout << "Waiting for file thread" << endl << endl;
+
+	writeRoots();
+	writeSquares();
+	end = clock();
+
+	cout << "Main: done" << endl << endl;
+	cout << "Runtime = " << (end - start) / CLK_TCK << " seconds.\n\n";
+
+	return 0;
+}
+
+void writeRoots()
+{
+	cout << "Writing 1,000,000,000 square roots to a file" << endl << endl;
+	ofstream roots("roots.txt");
+	for (int i = 0; i < 1000000000; i++)
+	{
+		roots << sqrt(i);
+	}
+	roots.close();
+	cout << "The square roots are ready." << endl << endl;
+}
+void writeSquares()
+{
+	cout << "Squaring 1,000,000,000 numbers" << endl << endl;
+	ofstream squares("squares.txt");
+	for (int i = 0; i < 1000000000; i++)
+	{
+		roots << pow(i, 2);
+	}
+	squares.close();
+	cout << "The squares are ready." << endl << endl;
+}
+//======================================================
+/* OUTPUT
+Main: startup
+
+Waiting for file thread
+
+Writing 1,000,000,000 square roots to a file
+
+The square roots are ready.
+
+Squaring 1,000,000,000 numbers
+
+The squares are ready.
+
+Main: done
+
+Runtime = 76 seconds.
+
+Press any key to continue . . . */
+//======================================================
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <thread>
+#include <fstream>
+
+using namespace std;
+
+void writeRoots();
+void writeSquares();
+
+int main()
+{
+	clock_t start;
+	clock_t end;
+
+	start = clock();
+
+	cout << "Main: startup" << endl << endl;
+	cout << "Waiting for file thread" << endl << endl;
+
+	thread firstThread(writeRoots);
+	thread secondThread(writeSquares);
+
+	firstThread.join();
+	secondThread.join();
+	
+	end = clock();
+
+	cout << "Main: done" << endl << endl;
+	cout << "Runtime = " << (end - start) / CLK_TCK << " seconds.\n\n";
+
+	return 0;
+}
+
+void writeRoots()
+{
+	cout << "Writing 1,000,000,000 square roots to a file" << endl << endl;
+	ofstream roots("roots.txt");
+	for (int i = 0; i < 1000000000; i++)
+	{
+		roots << sqrt(i);
+	}
+	roots.close();
+	cout << "The square roots are ready." << endl << endl;
+}
+void writeSquares()
+{
+	cout << "Squaring 1,000,000,000 numbers" << endl << endl;
+	ofstream squares("squares.txt");
+	for (int i = 0; i < 1000000000; i++)
+	{
+		roots << pow(i, 2);
+	}
+	squares.close();
+	cout << "The squares are ready." << endl << endl;
+}
+//======================================================
+/* OUTPUT
+Main: startup
+
+Waiting for file thread
+
+Writing 1,000,000,000 square roots to a file
+
+Squaring 1,000,000,000 numbers
+
+The square roots are ready.
+
+The squares are ready.
+
+Main: done
+
+Runtime = 58 seconds.
+
+Press any key to continue . . . */
+//======================================================
