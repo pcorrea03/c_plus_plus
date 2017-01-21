@@ -1,0 +1,191 @@
+//====================================================================
+// Programmar: Pedro Correa
+//====================================================================
+// main.cpp
+#include "Dog.h"
+
+int main()
+{
+	Dog myDog("Spot", 5.5, 3);
+	Dog yourDog("Jack", 4.5, 3);
+
+	if (myDog >= 2)
+		cout << "The dog is at least 2 years old.\n\n";
+	else
+		cout << "The dog is less than 2 years old. \n\n";
+	if (yourDog < myDog)
+		cout << "Your dog weighs less than my dog.\n\n";
+	else
+		cout << "Your dog does not weigh less than my dog.\n\n";
+	if (myDog == yourDog)
+		cout << "They have the same name.\n\n";
+	else
+		cout << "They do not have the same name.\n\n";
+
+	cout << yourDog;
+	
+	return 0;
+}
+//====================================================================
+// Dog.h
+#pragma once
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Dog
+{
+private:
+	string name;
+	float weight;
+	int age;
+public:
+	Dog(string name, float weight, int age)
+	{
+		this->name = name;
+		this->weight = weight;
+		this->age = age;
+	}
+
+	~Dog() {}
+
+	void displayDog()
+	{
+		cout << "NAME: " << name << endl << "WEIGHT: " << weight << " pounds" << endl << "AGE: " << age << endl << endl;
+	}
+
+	bool operator>=(int age)
+	{
+		return age >= 2;
+	}
+
+	bool operator<(Dog &dog)
+	{
+		return this->weight < weight;
+	}
+
+	bool operator==(Dog &dog)
+	{
+		return this->name == name;
+	}
+	
+	friend ostream & operator<<(ostream &stream, Dog &dog)
+	{
+		stream << "NAME: " << dog.name << endl << "WEIGHT: " << dog.weight << " pounds" << endl << "AGE: " << dog.age << " years old" << endl << endl;
+		return stream;
+	}
+};
+//====================================================================
+/* OUTPUT:
+The dog is at least 2 years old.
+
+Your dog does not weigh less than my dog.
+
+They have the same name.
+
+NAME: Jack
+WEIGHT: 4.5 pounds
+AGE: 3 years old
+
+Press any key to continue . . . */
+//====================================================================
+// main.cpp
+#include "Car.h"
+
+int main()
+{
+	Car myCar;
+	Car yourCar("Toyota", 2007);
+	
+	cout << "My Car" << endl << myCar;
+	cout << "Your Car" << endl << yourCar;
+
+	myCar.setCar("Ford", 2002);
+	cout << "My Car" << endl << myCar;
+
+	if (areSame(myCar, yourCar))
+		cout << "The two cars are the same model and year." << endl << endl;
+	else
+		cout << "The two cars are not the same model and year." << endl << endl;
+	
+	cout << myCar.getCount() << " cars have been delcared." << endl << endl;
+	
+	return 0;
+}
+
+bool areSame(Car &myCar, Car &yourCar)
+{
+	return ((myCar.model == yourCar.model) && (myCar.year == yourCar.year));
+}
+//====================================================================
+// Car.h
+#pragma once
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Car
+{
+private:
+	string model;
+	int year;
+	static int carCount;
+public:
+	Car();
+	Car(string model, int year);
+	~Car();
+	void setCar(string model, int year);
+	int getCount();
+	void displayCar();
+	friend bool areSame(Car &myCar, Car &yourCar);
+	friend ostream & operator<<(ostream &stream, Car &car);
+};
+//====================================================================
+// Car.cpp
+#include "Car.h"
+
+int Car::carCount = 0;
+Car::Car()
+{
+	model = "";
+	year = 0;
+	carCount++;
+}
+
+Car::Car(string model, int year)
+{
+	this->model = model;
+	this->year = year;
+	carCount++;
+}
+
+Car::~Car(){}
+
+void Car::setCar(string model, int year)
+{
+	this->model=model;
+	this->year=year;
+}
+
+int Car::getCount()
+{
+	return carCount;
+}
+
+void Car::displayCar()
+{
+	cout << "Model: " << model << "\nYear: " << year << endl << endl;
+}
+
+ostream & operator<<(ostream &stream, Car &car)
+{
+	stream << "MODEL: " << car.model << endl << "YEAR: " << car.year << endl << endl;
+	return stream;
+}
+//====================================================================
+/* OUTPUT:
+ */
+//====================================================================
