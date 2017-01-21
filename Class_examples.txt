@@ -1,0 +1,247 @@
+//=======================================================================
+// Programmar: Pedro Correa
+//=======================================================================
+// Presidents.h
+#pragma once
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Presidents
+{
+private:
+	int number_;
+	string name_;
+	string quote_;
+public:
+	Presidents();
+	~Presidents();
+	void setNumber(int number);
+	void setName(string name);
+	void setQuote(string quote);
+	void displayPresidents()const;
+
+};
+
+//=======================================================================
+// Presidents.cpp
+#include "Presidents.h"
+
+Presidents::Presidents()
+{
+	number_ = 0;
+	name_ = "";
+	quote_ = "";
+}
+Presidents::~Presidents() {}
+
+void Presidents::setNumber(int number)
+{
+	number_ = number;
+}
+void Presidents::setName(string name)
+{
+	name_ = name;
+}
+void Presidents::setQuote(string quote)
+{
+	quote_ = quote;
+}
+void Presidents::displayPresidents()const
+{
+	cout << name_ << ", " << number_ << " president, said: "<< "\"" << quote_ << ".\"" << endl;
+}
+//=======================================================================
+// main.cpp
+#include "Presidents.h"
+
+int main()
+{
+	const int SIZE = 3;
+	Presidents president[SIZE];
+	int number;
+	string name;
+	string quote;
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << "Enter the " << i + 1 << " President's number: ";
+		cin >> number;
+		
+		president[i].setNumber(number);
+		cin.ignore();
+		cout << "Enter his name: ";
+		getline(cin, name);
+		president[i].setName(name);
+
+		cout << "Enter his quote: ";
+		getline(cin, quote);
+		president[i].setQuote(quote);
+	}
+
+	cout << "The presidents are:" << endl;
+	for (int i = 0; i < SIZE; i++)
+	{
+		president[i].displayPresidents();
+	}
+
+	return 0;
+}
+//=======================================================================
+// OUTPUT
+Enter the 1 President's number: 37
+Enter his name: Richard Nixon
+Enter his quote: I am not a crook
+Enter the 2 President's number: 41
+Enter his name: George H Bush
+Enter his quote: Read my lips - no new taxes
+Enter the 3 President's number: 42
+Enter his name: Bill Clinton
+Enter his quote: I did not have sexual relations with that woman.
+The presidents are:
+Richard Nixon, 37 president, said: "I am not a crook."
+George H Bush, 41 president, said: "Read my lips - no new taxes."
+Bill Clinton, 42 president, said: "I did not have sexual relations with that woman.."
+Press any key to continue . . .
+//=======================================================================
+// Cats.h file
+#pragma once
+#include <iostream>
+#include <string>
+using namespace std;
+#ifndef CATS_H_
+#define CATS_H_
+
+class Cats {
+private: //members variables
+	float weight;
+	string color;
+public: //methods functions
+	Cats();
+	Cats(float weight, string color);
+	~Cats();
+	void getWeight(float weight);
+	float setWeight(float weight);
+	void getColor(string color);
+	string setColor(string color);
+	void displayInfo()const;
+	void meow();
+
+};
+#endif /* CATS_H_ */
+//=======================================================================
+// Cats.cpp
+#include "Cats.h"
+
+Cats::Cats() {
+	float weight = 0.00;
+	string color = "";
+}
+
+Cats::Cats(float weight, string color)
+{
+	this->weight = weight;
+	this->color = color;
+}
+
+Cats::~Cats() {}
+
+void Cats::getWeight(float weight)
+{
+	this->weight = weight;
+}
+float Cats::setWeight(float weight)
+{
+	return weight;
+}
+
+void Cats::getColor(string color)
+{
+	this->color = color;
+}
+string Cats::setColor(string color)
+{
+	return color;
+}
+void Cats::displayInfo()const
+{
+	cout << " weight is " << weight << " pound(s) and is " << color << endl;
+}
+void Cats::meow()
+{
+	cout << "says: MEOW!" << endl;
+}
+//=======================================================================
+// main.cpp
+#include "Cats.h"
+int main()
+{
+	Cats Fluffy;
+	Cats Tom;
+	Cats Kitty;
+	float weight;
+	string color;
+
+	cout << "Describe Fluffy. What does she weigh? ";
+	cin >> weight;
+	cin.ignore();
+	Fluffy.getWeight(weight);
+	cout << "What color is she? ";
+	getline(cin, color);
+	Fluffy.getColor(color);
+	
+
+	cout << "\nDescribe Tom. What does he weigh? ";
+	cin >> weight;
+	cin.ignore();
+	Tom.getWeight(weight);
+	cout << "What color is he? ";
+	getline(cin, color);
+	Tom.getColor(color);
+	
+
+	cout << "\nDescribe Kitty. What does she weigh? ";
+	cin >> weight;
+	cin.ignore();
+	Kitty.getWeight(weight);
+	cout << "What color is she? ";
+	getline(cin, color);
+	Kitty.getColor(color);
+	cin.ignore();
+
+	cout << "Fluffy ";
+	Fluffy.displayInfo();
+	cout << "Tom ";
+	Tom.displayInfo();
+	cout << "Kitty ";
+	Kitty.displayInfo();
+
+	cout << "\nFluffy";
+	Fluffy.meow();
+	cout << "Tom";
+	Tom.meow();
+	cout << "Kitty";
+	Kitty.meow();
+
+	return 0;
+}
+//=======================================================================
+// OUTPUT
+Describe Fluffy. What does she weigh? 4
+What color is she? brown
+
+Describe Tom. What does he weigh? 9
+What color is he? orange
+
+Describe Kitty. What does she weigh? 5
+What color is she? white
+
+Fluffy  weight is 4 pound(s) and is brown
+Tom  weight is 9 pound(s) and is orange
+Kitty  weight is 5 pound(s) and is white
+
+Fluffysays: MEOW!
+Tomsays: MEOW!
+Kittysays: MEOW!
+Press any key to continue . . .
